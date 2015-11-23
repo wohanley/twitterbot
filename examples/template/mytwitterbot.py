@@ -111,6 +111,16 @@ class MyTwitterBot(TwitterBot):
         raise NotImplementedError("You need to implement this to reply to/fav mentions (or pass if you don't want to)!")
 
 
+    def on_direct_message(self, dm):
+        """
+        Defines actions to take when a direct message is received.
+
+        dm - a tweepy.DirectMessage object. You can access the text with
+        dm.text and the sender (a tweepy.User object) with dm.sender
+        """
+        raise NotImplementedError("You need to implement this to reply to DMs (or pass if you don't want to)!")
+
+
     def on_timeline(self, tweet, prefix):
         """
         Defines actions to take on a timeline tweet.
