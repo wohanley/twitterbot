@@ -374,7 +374,7 @@ class TwitterBot:
         try:
             self.state['new_followers'] = [f_id for f_id in self.api.followers_ids(self.id) if f_id not in self.state['followers']]
 
-            self.config['last_follow_check'] = time.time()
+            self.state['last_follow_check'] = time.time()
 
         except tweepy.TweepError as e:
             self._log_tweepy_error('Can\'t update followers', e)
@@ -437,7 +437,7 @@ class TwitterBot:
             
             # check followers every 15 minutes
             #if self.autofollow and (time.time() - self.last_follow_check) > (15 * 60): 
-            if self.state['last_follow_check'] > (15 * 60): 
+            if (time.time() - self.state['last_follow_check']) > (15 * 60): 
                 self._check_followers()
                 self._handle_followers()
 
