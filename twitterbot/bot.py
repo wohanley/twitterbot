@@ -185,8 +185,8 @@ class TwitterBot:
 
 
     def post_tweet(self, text, reply_to=None, media=None):
-        kwargs = {}
-        args = [text]
+        kwargs = {'status': text}
+        args = []
         if media is not None:
             cmd = self.api.update_with_media
             args.insert(0, media)
